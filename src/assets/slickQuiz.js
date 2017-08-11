@@ -66,6 +66,7 @@
             _quizResultsCopy       = _element + ' .quizResultsCopy',
             _quizHeader            = _element + ' .quizHeader',
             _quizScore             = _element + ' .quizScore',
+            _quizScoreCount        = _element + ' .quizScore',
             _quizLevel             = _element + ' .quizLevel',
 
             // Top Level Quiz Element Objects
@@ -76,6 +77,7 @@
             $quizResultsCopy       = $(_quizResultsCopy),
             $quizHeader            = $(_quizHeader),
             $quizScore             = $(_quizScore),
+             $quizScoreCount             = $(_quizScoreCount),
             $quizLevel             = $(_quizLevel)
         ;
 
@@ -294,7 +296,13 @@
 
                         if (answer.correct) {
                             trueAnswers.push($('<div />').html(answer.option).text());
+                            
+                  /*             score     = $(_element + ' ' + _correct).length;
+                                $(_quizScore + ' span').html(score);
+                                console.log(score);*/
+                        
                         }
+                         
                     }
                 }
 
@@ -318,6 +326,7 @@
 
                 if (correctResponse) {
                     questionLI.addClass(correctClass);
+               
                 }
 
                 // If response messaging hasn't been disabled, toggle the proper response
@@ -419,7 +428,7 @@
                     score     = $(_element + ' ' + _correct).length,
                     levelRank = plugin.method.calculateLevel(score),
                     levelText = $.isNumeric(levelRank) ? levels[levelRank] : '';
-
+              
                 $(_quizScore + ' span').html(score + ' / ' + questionCount);
                 $(_quizLevel + ' span').html(levelText);
                 $(_quizLevel).addClass('level' + levelRank);
